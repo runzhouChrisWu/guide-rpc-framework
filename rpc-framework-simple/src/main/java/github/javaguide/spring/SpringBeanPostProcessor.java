@@ -39,6 +39,8 @@ public class SpringBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean.getClass().isAnnotationPresent(RpcService.class)) {
+//            getName()返回的是虚拟机里面的class的表示，而getCanonicalName()返回的是更容易理解的表示。
+//            例如内部类 getName() 以 External$Inner 形式表现，而 getCanonicalName() 以External.Inner 形式表现
             log.info("[{}] is annotated with  [{}]", bean.getClass().getName(), RpcService.class.getCanonicalName());
             // get RpcService annotation
             RpcService rpcService = bean.getClass().getAnnotation(RpcService.class);

@@ -17,14 +17,19 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * refer to dubbo spi: https://dubbo.apache.org/zh-cn/docs/source_code_guide/dubbo-spi.html
  */
 @Slf4j
+//    这个类中放的是：需要加载的接口类型:type 这个接口所有实现类的实例:cachedInstances  这个接口所有实现类:cachedClasses
 public final class ExtensionLoader<T> {
-
+//    SPI 规范
     private static final String SERVICE_DIRECTORY = "META-INF/extensions/";
+//    接口及接口的ExtensionLoader的映射
     private static final Map<Class<?>, ExtensionLoader<?>> EXTENSION_LOADERS = new ConcurrentHashMap<>();
+//    接口实现类类名与接口实现类实例的映射
     private static final Map<Class<?>, Object> EXTENSION_INSTANCES = new ConcurrentHashMap<>();
 
     private final Class<?> type;
+//    String 是指接口实现类的类名 比如netty    Holder指这个类的实例
     private final Map<String, Holder<Object>> cachedInstances = new ConcurrentHashMap<>();
+//    String 指接口实现类的类名 比如netty      Class是这个类的Class对象
     private final Holder<Map<String, Class<?>>> cachedClasses = new Holder<>();
 
     private ExtensionLoader(Class<?> type) {
@@ -115,6 +120,7 @@ public final class ExtensionLoader<T> {
         try {
             Enumeration<URL> urls;
             ClassLoader classLoader = ExtensionLoader.class.getClassLoader();
+//            System.out.println(classLoader);
             urls = classLoader.getResources(fileName);
             if (urls != null) {
                 while (urls.hasMoreElements()) {

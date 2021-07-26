@@ -18,7 +18,9 @@ public class ZkServiceRegistryImpl implements ServiceRegistry {
 
     @Override
     public void registerService(String rpcServiceName, InetSocketAddress inetSocketAddress) {
+//      servicePath等同于：/my-rpc/github.javaguide.HelloServicetest2version2/192.168.2.14:9998  从这里可以看出来，放入zk中的节点里包括了一个IP+端口的节点
         String servicePath = CuratorUtils.ZK_REGISTER_ROOT_PATH + "/" + rpcServiceName + inetSocketAddress.toString();
+//        System.out.println(servicePath+"AAA");
         CuratorFramework zkClient = CuratorUtils.getZkClient();
         CuratorUtils.createPersistentNode(zkClient, servicePath);
     }

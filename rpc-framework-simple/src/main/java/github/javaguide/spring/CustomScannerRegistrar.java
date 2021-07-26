@@ -46,6 +46,8 @@ public class CustomScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
         CustomScanner rpcServiceScanner = new CustomScanner(beanDefinitionRegistry, RpcService.class);
         // Scan the Component annotation
         CustomScanner springBeanScanner = new CustomScanner(beanDefinitionRegistry, Component.class);
+        System.out.println(resourceLoader.getResource("/").getClass());
+//        这里输出:ClassPathContextResource
         if (resourceLoader != null) {
             rpcServiceScanner.setResourceLoader(resourceLoader);
             springBeanScanner.setResourceLoader(resourceLoader);
