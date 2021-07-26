@@ -90,7 +90,7 @@
                 <version>${checkstyle-maven-plugin.version}</version>
                 <configuration>
                     <configLocation>config/checkstyle.xml</configLocation>
-                    <skip>true</skip>
+                    <skip>true</skip>   <!-- 在这里跳过了代码检测，不然一堆报错 -->
                 </configuration>
                 <executions>
                     <execution>
