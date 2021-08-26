@@ -51,7 +51,7 @@ public final class CuratorUtils {
                 log.info("The node already exists. The node is:[{}]", path);
             } else {
                 //eg: /my-rpc/github.javaguide.HelloService/127.0.0.1:9999
-                zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path);
+                zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path);
                 log.info("The node was created successfully. The node is:[{}]", path);
             }
             REGISTERED_PATH_SET.add(path);
