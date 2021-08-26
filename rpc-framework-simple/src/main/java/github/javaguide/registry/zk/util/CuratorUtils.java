@@ -45,13 +45,13 @@ public final class CuratorUtils {
      *
      * @param path node path
      */
-    public static void createPersistentNode(CuratorFramework zkClient, String path) {
+    public static void createEphemeralNode(CuratorFramework zkClient, String path) {
         try {
             if (REGISTERED_PATH_SET.contains(path) || zkClient.checkExists().forPath(path) != null) {
                 log.info("The node already exists. The node is:[{}]", path);
             } else {
                 //eg: /my-rpc/github.javaguide.HelloService/127.0.0.1:9999
-                zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path);
+                zkClient.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(path);
                 log.info("The node was created successfully. The node is:[{}]", path);
             }
             REGISTERED_PATH_SET.add(path);
@@ -77,6 +77,7 @@ public final class CuratorUtils {
             SERVICE_ADDRESS_MAP.put(rpcServiceName, result);
             registerWatcher(rpcServiceName, zkClient);
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("get children nodes for path [{}] fail", servicePath);
         }
         return result;

@@ -1,2 +1,2 @@
-loadBalance=github.javaguide.loadbalance.loadbalancer.ConsistentHashLoadBalance
-trainLoadBalance=github.javaguide.loadbalance.loadbalancer.TrainLoadBalance
+loadBalance=github.javaguide.loadbalance.loadbalancer.RoundRobinLoadBalance
+consistentHashLoadBalance=github.javaguide.loadbalance.loadbalancer.ConsistentHashLoadBalance
