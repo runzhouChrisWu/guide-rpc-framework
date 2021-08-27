@@ -28,6 +28,10 @@ public class RpcServiceConfig {
     private String group = "";
 
     /**
+     * Different service providers have different weights
+     */
+    private String weight = "";
+    /**
      * target service
      */
     private Object service;

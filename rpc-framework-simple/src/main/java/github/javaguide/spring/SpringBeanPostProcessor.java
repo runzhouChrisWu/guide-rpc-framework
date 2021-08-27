@@ -47,6 +47,7 @@ public class SpringBeanPostProcessor implements BeanPostProcessor {
             // build RpcServiceProperties
             RpcServiceConfig rpcServiceConfig = RpcServiceConfig.builder()
                     .group(rpcService.group())
+                    .weight(rpcService.weight())
                     .version(rpcService.version())
                     .service(bean).build();
             serviceProvider.publishService(rpcServiceConfig);

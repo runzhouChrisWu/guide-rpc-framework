@@ -37,14 +37,11 @@ public class ZkServiceDiscoveryImpl implements ServiceDiscovery {
             throw new RpcException(RpcErrorMessageEnum.SERVICE_CAN_NOT_BE_FOUND, rpcServiceName);
         }
 
-        serviceUrlList.stream().forEach(k->{
-            log.info(k.toString());
-        });
-
         // load balancing
         String targetServiceUrl = loadBalance.selectServiceAddress(serviceUrlList, rpcRequest);
+        // targetServiceUrl = targetServiceUrl.substring(0,targetServiceUrl.lastIndexOf("%"));
         log.info("Successfully found the service address:[{}]", targetServiceUrl);
-        String[] socketAddressArray = targetServiceUrl.split(":");
+        String[] socketAddressArray = targetServiceUrl.split("[:%]");
         String host = socketAddressArray[0];
         int port = Integer.parseInt(socketAddressArray[1]);
         return new InetSocketAddress(host, port);

@@ -16,9 +16,6 @@ public abstract class AbstractLoadBalance implements LoadBalance {
         if (serviceAddresses == null || serviceAddresses.size() == 0) {
             return null;
         }
-        if (serviceAddresses.size() == 1) {
-            return serviceAddresses.get(0);
-        }
         return doSelect(serviceAddresses, rpcRequest);
     }
 

@@ -20,4 +20,5 @@ public interface ServiceRegistry {
      */
     void registerService(String rpcServiceName, InetSocketAddress inetSocketAddress);
 
+    void registerService(String rpcServiceName, InetSocketAddress inetSocketAddress,String rpcServiceWeight);
 }

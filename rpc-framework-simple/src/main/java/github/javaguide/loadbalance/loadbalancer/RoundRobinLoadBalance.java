@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class RoundRobinLoadBalance extends AbstractLoadBalance {
     private static final ConcurrentHashMap<String,Integer> selectors = new ConcurrentHashMap<>();
+
     @Override
     protected String doSelect(List<String> serviceAddresses, RpcRequest rpcRequest) {
         String rpcServiceName = rpcRequest.getRpcServiceName();

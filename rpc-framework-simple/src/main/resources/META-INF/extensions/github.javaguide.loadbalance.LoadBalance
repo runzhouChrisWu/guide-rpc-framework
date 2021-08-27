@@ -1,2 +1,3 @@
-loadBalance=github.javaguide.loadbalance.loadbalancer.RoundRobinLoadBalance
-consistentHashLoadBalance=github.javaguide.loadbalance.loadbalancer.ConsistentHashLoadBalance
+loadBalance=github.javaguide.loadbalance.loadbalancer.WeightRandomLoadBalance
+consistentHashLoadBalance=github.javaguide.loadbalance.loadbalancer.RoundRobinLoadBalance
+weightRandomLoadBalance=github.javaguide.loadbalance.loadbalancer.WeightRandomLoadBalance

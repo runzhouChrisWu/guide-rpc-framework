@@ -30,4 +30,8 @@ public @interface RpcService {
      */
     String group() default "";
 
+    /**
+     * Service weight,default value is 1
+     */
+    String weight() default "1";
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * refer to dubbo consistent hash load balance: https://github.com/apache/dubbo/blob/2d9583adf26a2d8bd6fb646243a9fe80a77e65d5/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/ConsistentHashLoadBalance.java
@@ -25,6 +26,14 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
 
     @Override
     protected String doSelect(List<String> serviceAddresses, RpcRequest rpcRequest) {
+        // 这里将添加权重后的节点,去掉其节点,一致性Hash无需权重
+        serviceAddresses = serviceAddresses.stream().map(s->{
+            int lastIndex = s.lastIndexOf("%");
+            return s.substring(0,lastIndex);
+                }
+        ).collect(Collectors.toList());
+        // serviceAddresses.forEach(System.out::println);
+
         int identityHashCode = System.identityHashCode(serviceAddresses);
         // build rpc service name by rpcRequest
         String rpcServiceName = rpcRequest.getRpcServiceName();
