@@ -9,6 +9,7 @@ import github.javaguide.registry.zk.util.CuratorUtils;
 import github.javaguide.remoting.dto.RpcRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -21,11 +22,12 @@ import java.util.List;
  */
 @Slf4j
 public class ZkServiceDiscoveryImpl implements ServiceDiscovery {
-    private final LoadBalance loadBalance;
+    @Autowired
+    private  LoadBalance loadBalance;
 
-    public ZkServiceDiscoveryImpl() {
-        this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class).getExtension("loadBalance");
-    }
+    // public ZkServiceDiscoveryImpl() {
+    //     this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class).getExtension("loadBalance");
+    // }
 
     @Override
     public InetSocketAddress lookupService(RpcRequest rpcRequest) {

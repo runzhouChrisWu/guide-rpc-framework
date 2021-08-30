@@ -12,6 +12,7 @@ import github.javaguide.remoting.transport.RpcRequestTransport;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,9 @@ import java.lang.reflect.Field;
 @Component
 public class SpringBeanPostProcessor implements BeanPostProcessor {
 
+    @Autowired
     private final ServiceProvider serviceProvider;
+
     private final RpcRequestTransport rpcClient;
 
     public SpringBeanPostProcessor() {

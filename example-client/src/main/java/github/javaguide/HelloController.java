@@ -13,9 +13,15 @@ public class HelloController {
     private HelloService helloService;
 
     public void test() throws InterruptedException {
-        String hello = this.helloService.hello(new Hello("111", "123"));
-        String hello2 = this.helloService.hello(new Hello("111", "546"));
-        String hello3 = this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "123"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
+       this.helloService.hello(new Hello("111", "546"));
         // this.helloService.hello(new Hello("111", "25422"));
         //如需使用 assert 断言，需要在 VM options 添加参数：-ea
         // assert "Hello description is 222".equals(hello);
